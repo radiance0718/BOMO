@@ -1,16 +1,16 @@
 conditioning:
-  method: vanilla
+  method: BOMO
   params:
-    scale: 5
-    miu: 0.1
+    scale: 13
+    miu: 0.01
     sparsity: 6
     num_proj: 30
     circle: False
     
 
 data:
-  name: CMOCT
-  root: ./data/CMOCT/
+  name: fundus
+  root: ./data/fundus1/
 
 measurement:
   operator:
