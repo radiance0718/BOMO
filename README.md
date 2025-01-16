@@ -1,0 +1,1 @@
+Swith method in noise_speckle_config.sh to BOMO if you want to use our function

@@ -1,0 +1,20 @@
+conditioning:
+  method: vanilla
+  params:
+    scale: 5
+    miu: 0.1
+    sparsity: 6
+    num_proj: 30
+    circle: False
+    
+
+data:
+  name: CMOCT
+  root: ./data/CMOCT/
+
+measurement:
+  operator:
+    name: noise
+  
+  noise: 
+    name: clean
