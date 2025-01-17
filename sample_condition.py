@@ -57,9 +57,6 @@ def main():
     model_config = load_yaml(args.model_config)
     diffusion_config = load_yaml(args.diffusion_config)
     task_config = load_yaml(args.task_config)
-   
-    #assert model_config['learn_sigma'] == diffusion_config['learn_sigma'], \
-    #"learn_sigma must be the same for model and diffusion configuartion."
     
     # Load model
     model = getUnet(**model_config)
@@ -103,62 +100,6 @@ def main():
         )
         
 
-
-
-    # 定义一些必要的函数
-    # operator.forward, noiser, sample_fn, clear_gray 等
-
-    # positions = ['top_left', 'top_right', 'bottom_left', 'bottom_right']
-
-    # for i, ref_img in enumerate(loader):
-    #     logger.info(f"Inference for image {i}")
-    #     fname = str(i).zfill(5) + '.png'
-        
-    #     # 切割图像为4个260x260的区域
-    #     ref_img_1 = ref_img[:, :, 0:260, 0:260]
-    #     ref_img_2 = ref_img[:, :, 0:260, -260:]
-    #     ref_img_3 = ref_img[:, :, -260:, 0:260]
-    #     ref_img_4 = ref_img[:, :, -260:, -260:]
-        
-    #     ref_imgs = [ref_img_1, ref_img_2, ref_img_3, ref_img_4]
-    #     ref_imgs = torch.cat(ref_imgs, dim=0).to(device)
-    #     print(ref_imgs.shape)
-        
-    #     samples = []
-    #     for j in range(4):
-    #         y = operator.forward(ref_imgs[j:j+1])
-    #         y_n = noiser(y)
-            
-    #         x_start = torch.randn(ref_imgs[j:j+1].shape, device=device).requires_grad_()
-    #         print(x_start.shape)
-    #         sample = sample_fn(x_start=x_start, measurement=y_n, record=True, save_root=out_path)
-    #         samples.append(sample)
-            
-    #         plt.imsave(os.path.join(out_path, 'input', str(i).zfill(5) + '_' + str(j) + '.png'), clear_gray(y_n), cmap='gray')
-    #         plt.imsave(os.path.join(out_path, 'label', str(i).zfill(5) + '_' + str(j) + '.png'), clear_gray(ref_imgs[j:j+1]), cmap='gray')
-    #         plt.imsave(os.path.join(out_path, 'recon', str(i).zfill(5) + '_' + str(j) + '.png'), clear_gray(sample), cmap='gray')
-        
-        # # 拼接时仅取对应位置的256x256区域
-        # samples_cropped = [crop_region(sample, position, 256) for sample, position in zip(samples, positions)]
-        
-        # top = torch.cat([samples_cropped[0], samples_cropped[1]], dim=3)
-        # bottom = torch.cat([samples_cropped[2], samples_cropped[3]], dim=3)
-        # final_img = torch.cat([top, bottom], dim=2)
-        
-        # 保存最终拼接结果
-        # plt.imsave(os.path.join(out_path, 'recon', str(i).zfill(5) + '.png'), clear_gray(final_img), cmap='gray')
-
-        # y = operator.forward(ref_img)
-        # y_n = noiser(y)
-         
-        # # Sampling
-        # x_start = torch.randn(ref_img.shape, device=device).requires_grad_()
-        # sample = sample_fn(x_start=x_start, measurement=y_n, record=True, save_root=out_path)
-        
-        # plt.imsave(os.path.join(out_path, 'input', fname), clear_gray(y_n), cmap = 'gray')
-        # plt.imsave(os.path.join(out_path, 'label', fname), clear_gray(ref_img), cmap = 'gray')
-        # plt.imsave(os.path.join(out_path, 'recon', fname), clear_gray(sample), cmap = 'gray')
-
     for i, ref_img in enumerate(loader):
         logger.info(f"Inference for image {i}")
         fname = str(i).zfill(5) + '.png'
@@ -173,5 +114,6 @@ def main():
         plt.imsave(os.path.join(out_path, 'input', fname), clear_gray(y_n), cmap = 'gray')
         plt.imsave(os.path.join(out_path, 'label', fname), clear_gray(ref_img), cmap = 'gray')
         plt.imsave(os.path.join(out_path, 'recon', fname), clear_gray(sample), cmap = 'gray')
+
 if __name__ == '__main__':
     main()
