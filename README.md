@@ -26,7 +26,7 @@ pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --e
 
 ## Download Dataset and Model
 
-This project uses the publicly available *fundus* dataset. We have already uploaded the *retinalS001* dataset in this repository, but if you need additional data, you can download the full dataset from [URL].
+This project uses the publicly available *fundus* dataset. We have already uploaded the *retinalS004* dataset in this repository, but if you need additional data, you can download the full dataset from [URL].
 
 You can also download our pretrained model from [URL].
 
